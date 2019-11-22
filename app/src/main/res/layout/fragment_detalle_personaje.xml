@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.FragmentDetallePersonaje">
+
+    <TextView
+        android:id="@+id/FragmentDetalle_TextView_NombredePersonaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre de Personaje"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30dp"/>
+
+    <TextView
+        android:id="@+id/FragmentDetalle_TextView_AlturadePersonaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:paddingLeft="10dp"
+        android:text="Altura Personaje"
+        android:layout_gravity="left"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/FragmentDetalle_TextView_ColPeloPersonaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:paddingLeft="10dp"
+        android:text="Color de Pelo"
+        android:layout_gravity="left"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/FragmentDetalle_TextView_ColPielPersonaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Color de Piel"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="120dp"
+        android:layout_gravity="left"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/FragmentDetalle_TextView_ColOjosPersonaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Color de Ojos"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="150dp"
+        android:layout_gravity="left"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/FragmentDetalle_TextView_GeneroPersonaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="Genero de Personaje"
+        android:layout_marginTop="180dp"
+        android:layout_gravity="left"
+        android:textSize="20dp"/>
+
+    <FrameLayout
+        android:id="@+id/FragmentDetalle_FrameLayout_ContenedorHomePlace"
+        android:layout_width="200dp"
+        android:layout_height="200sp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="right"
+        android:orientation="vertical"
+        android:paddingLeft="25dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/homeworld_TextView_nombrePlaneta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre de Planeta"
+                android:textSize="15dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/homeworld_TextView_climaPlaneta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clima de Planeta"
+                android:textSize="15dp"
+                android:layout_marginTop="40dp"/>
+
+            <TextView
+                android:id="@+id/homeworld_TextView_gravedadPlaneta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gravedad de Planeta"
+                android:textSize="15dp"
+                android:layout_marginTop="70dp"/>
+
+            <TextView
+                android:id="@+id/homeworld_TextView_terrenoPlaneta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terreno de Planeta"
+                android:textSize="15dp"
+                android:layout_marginTop="100dp"/>
+
+            <TextView
+                android:id="@+id/homeworld_TextView_poblacionPlaneta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Poblacion de Planeta"
+                android:textSize="15dp"
+                android:layout_marginTop="130dp"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/FragmentDetalle_FrameLayout_ContenedorEspecie"
+        android:layout_width="200dp"
+        android:layout_height="200sp"
+        android:layout_marginTop="300dp"
+        android:layout_gravity="right"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/especie_TextView_nombreEspecie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Nombre de Especie"
+                android:textSize="15dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/especie_TextView_clasifEspecie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Clasif de Especie"
+                android:textSize="15dp"
+                android:layout_marginTop="40dp"/>
+
+            <TextView
+                android:id="@+id/especie_TextView_altpromEspecie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Alt prom de Especie"
+                android:textSize="15dp"
+                android:layout_marginTop="70dp"/>
+
+            <TextView
+                android:id="@+id/especie_TextView_promvidEspecie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Prom Vida de Especie"
+                android:textSize="15dp"
+                android:layout_marginTop="100dp"/>
+
+            <TextView
+                android:id="@+id/especie_TextView_idiomaEspecie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Idioma de Especie"
+                android:textSize="15dp"
+                android:layout_marginTop="130dp"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/FragmentDetalle_RecyclerView_ContenedorListaPeliculas"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_marginTop="250dp"
+        android:paddingLeft="20sp"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
