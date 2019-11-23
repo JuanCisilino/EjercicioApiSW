@@ -3,8 +3,10 @@ package com.xappia.ejercicioapisw.model;
 import android.util.Log;
 
 import com.xappia.ejercicioapisw.utils.ResultListener;
+import com.xappia.ejercicioapisw.view.FragmentDetallePersonaje;
 
 import java.security.SecurityPermission;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -13,9 +15,12 @@ import retrofit2.Response;
 
 public class FilmsDao extends RetrofitFilmsDao{
 
+    public static final String NOMBRE = "Nombre";
     public static final String BASE_URL = "https://swapi.co";
     public static final String PERSONAJEELEGIDO = "PersonajeElegido";
     private Personaje personaje;
+    List<Personaje> personajeList = new ArrayList<>();
+
 
     public FilmsDao() {
         super(BASE_URL);
@@ -71,4 +76,6 @@ public class FilmsDao extends RetrofitFilmsDao{
             }
         });
     }
+
+
 }

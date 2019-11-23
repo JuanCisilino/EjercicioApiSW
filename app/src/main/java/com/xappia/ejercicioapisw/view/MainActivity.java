@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -18,12 +19,15 @@ import com.xappia.ejercicioapisw.controller.ControllerFilms;
 import com.xappia.ejercicioapisw.model.Personaje;
 import com.xappia.ejercicioapisw.utils.ResultListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterPersonaje.ListenerDeAdapter,
+FragmentDetallePersonaje.ListerDeAgregarPersonaje{
 
     private Toolbar myToolbar;
     private RecyclerView contenedorLista;
+    private AdapterPersonaje adapterPersonaje;
     private ControllerFilms controllerFilms;
     private Integer consulta;
+    private FragmentListaPersonajes fragmentListaPersonajes;
 
 
     @Override
@@ -31,8 +35,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myToolbar = findViewById(R.id.ToolbarDeLaApp_Toolbar_ContenedorItems);
+        contenedorLista = findViewById(R.id.MainActivity_RecyclerView_ContenedorDeLista);
         controllerFilms = new ControllerFilms();
+        adapterPersonaje = new AdapterPersonaje(this);
         creoElAppBar();
+        contenedorLista.setLayoutManager(new LinearLayoutManager(getBaseContext(), RecyclerView.VERTICAL, false));
+        //contenedorLista.setAdapter(adapterPersonaje);
     }
 
     private void creoElAppBar() {
@@ -92,4 +100,16 @@ public class MainActivity extends AppCompatActivity {
                 .addToBackStack(null)
                 .commit();
     }
+
+    @Override
+    public void agregarPersonaje(Personaje personaje) {
+        fragmentListaPersonajes.agregarPersonaje(personaje);
+        onBackPressed();
+    }
+
+    @Override
+    public void informarPersonajeSeleccionado(Personaje personaje) {
+
+    }
+
 }

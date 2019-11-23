@@ -23,11 +23,12 @@ public class AdapterFilms extends RecyclerView.Adapter<AdapterFilms.ViewHolderFi
     private ListenerDeAdapter listenerDeAdapter;
 
     public AdapterFilms(List<Films> filmsList) {
-        this.filmsList = new ArrayList<>();
+        this.filmsList = filmsList;
     }
 
     public AdapterFilms(ListenerDeAdapter listenerDeAdapter) {
         this.listenerDeAdapter = listenerDeAdapter;
+        filmsList = new ArrayList<>();
     }
 
     @NonNull

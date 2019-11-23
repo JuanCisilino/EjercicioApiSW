@@ -196,8 +196,17 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/FragmentDetalle_RecyclerView_ContenedorListaPeliculas"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:layout_marginTop="250dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="300dp"
         android:paddingLeft="20sp"/>
+
+    <Button
+        android:id="@+id/FragmentDetalle_Button_BotonDeAgregar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agregar a la Lista"
+        android:layout_marginTop="600dp"
+        />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

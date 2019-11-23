@@ -1,14 +1,18 @@
 package com.xappia.ejercicioapisw.view;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.xappia.ejercicioapisw.R;
@@ -28,15 +32,21 @@ public class FragmentDetallePersonaje extends Fragment implements AdapterFilms.L
     private TextView nombreHome, climaHome, gravedadHome, terrenoHome, poblacionHome;
     private TextView nombreEspecie, clasifEspecie, altPromEspecie, promVidaEspecie, idiomaEspecie;
     private View view;
+    private Button botonAgregar;
+    private RecyclerView recyclerFilms;
     private Personaje personajeElegido;
     private AdapterFilms adapterFilms;
     private ControllerFilms controllerFilms;
+    private ListerDeAgregarPersonaje listerDeAgregarPersonaje;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_detalle_personaje, container, false);
+        recyclerFilms = view.findViewById(R.id.FragmentDetalle_RecyclerView_ContenedorListaPeliculas);
+        botonAgregar = view.findViewById(R.id.FragmentDetalle_Button_BotonDeAgregar);
         buscarVariablesPersonaje();
         buscarVariablesHome();
         buscarVariablesEspecie();
@@ -47,6 +57,14 @@ public class FragmentDetallePersonaje extends Fragment implements AdapterFilms.L
         setearPersonaje();
         setearHome();
         setearEspecie();
+        recyclerFilms.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        recyclerFilms.setAdapter(adapterFilms);
+        botonAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listerDeAgregarPersonaje.agregarPersonaje(personajeElegido);
+            }
+        });
         return view;
     }
 
@@ -98,7 +116,7 @@ public class FragmentDetallePersonaje extends Fragment implements AdapterFilms.L
     }
 
     public void setearEspecie() {
-        controllerFilms.traerEspecie(personajeElegido.getSpecies().get(0), new ResultListener<Species>() {
+        controllerFilms.traerEspecie(personajeElegido.getSpecies().get(0).toString(), new ResultListener<Species>() {
             @Override
             public void finish(Species result) {
                 nombreEspecie.setText("Especie: " + result.getName());
@@ -112,7 +130,17 @@ public class FragmentDetallePersonaje extends Fragment implements AdapterFilms.L
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        listerDeAgregarPersonaje = (ListerDeAgregarPersonaje) context;
+    }
+
+    @Override
     public void informarArticuloSeleccionado(Personaje personaje) {
 
+    }
+
+    public interface ListerDeAgregarPersonaje{
+        public void agregarPersonaje(Personaje personaje);
     }
 }
