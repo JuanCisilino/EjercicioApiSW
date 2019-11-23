@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         creoElAppBar();
     }
 
-    private void creoElAppBar(){
+    private void creoElAppBar() {
         setSupportActionBar(myToolbar);
     }
 
@@ -46,38 +46,42 @@ public class MainActivity extends AppCompatActivity {
         MenuItem myMenuItemSearch = menu.findItem(R.id.ToolBarMenu_Item_action_search);
         MenuItem myMenuItemList = menu.findItem(R.id.ToolBarMenu_Item_lista);
 
-
         SearchView mySearchView = (SearchView) myMenuItemSearch.getActionView();
         mySearchView.setQueryHint("May the 4 Be With U!!");
 
         mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                consulta = Integer.valueOf(query);
-                if (consulta != null) {
-                    controllerFilms.traePersonaje(consulta, new ResultListener<Personaje>() {
-                        @Override
-                        public void finish(Personaje result) {
+
+                try {
+                    consulta = Integer.valueOf(query);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(MainActivity.this, "Ese Personaje no Existir en Esta Historia!!", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                    return false;
+                }
+                controllerFilms.traePersonaje(consulta, new ResultListener<Personaje>() {
+                    @Override
+                    public void finish(Personaje result) {
+                        if (result != null) {
                             Toast.makeText(getBaseContext(), result.getName(), Toast.LENGTH_LONG).show();
                             FragmentDetallePersonaje fragmentDetallePersonaje = new FragmentDetallePersonaje();
                             Bundle bundle = new Bundle();
                             bundle.putSerializable(fragmentDetallePersonaje.PERSONAJEELEGIDO, result);
                             fragmentDetallePersonaje.setArguments(bundle);
                             pegarFragment(fragmentDetallePersonaje);
+                        } else {
+                            Toast.makeText(getBaseContext(), "Ese Personaje no Existir en Esta Historia!!", Toast.LENGTH_LONG).show();
                         }
-                    });
-                } else {
-                    Toast.makeText(getBaseContext(), "Ese Personaje no Existir en Esta Historia!!", Toast.LENGTH_LONG).show();
-                }
+                    }
+                });
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 return true;
             }
         });
-
         return super.onCreateOptionsMenu(menu);
     }
 

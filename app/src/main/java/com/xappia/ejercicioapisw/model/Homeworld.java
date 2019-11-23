@@ -20,11 +20,11 @@ public class Homeworld {
         return gravity;
     }
 
-    public String getTerrain() {
-        return terrain;
-    }
+    public String getTerrain() { return terrain; }
 
     public String getPopulation() {
         return population;
     }
+
+
 }

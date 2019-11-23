@@ -4,6 +4,7 @@ package com.xappia.ejercicioapisw.view;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,10 @@ import android.widget.TextView;
 
 import com.xappia.ejercicioapisw.R;
 import com.xappia.ejercicioapisw.controller.ControllerFilms;
+import com.xappia.ejercicioapisw.model.Homeworld;
 import com.xappia.ejercicioapisw.model.Personaje;
+import com.xappia.ejercicioapisw.model.Species;
+import com.xappia.ejercicioapisw.utils.ResultListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +30,7 @@ public class FragmentDetallePersonaje extends Fragment implements AdapterFilms.L
     private View view;
     private Personaje personajeElegido;
     private AdapterFilms adapterFilms;
+    private ControllerFilms controllerFilms;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,10 +43,10 @@ public class FragmentDetallePersonaje extends Fragment implements AdapterFilms.L
         Bundle bundle = getArguments();
         personajeElegido = (Personaje) bundle.getSerializable(PERSONAJEELEGIDO);
         adapterFilms = new AdapterFilms(this);
-        ControllerFilms controllerFilms = new ControllerFilms();
+        controllerFilms = new ControllerFilms();
         setearPersonaje();
-//        setearHome();
-//        setearEspecie();
+        setearHome();
+        setearEspecie();
         return view;
     }
 
@@ -80,19 +85,30 @@ public class FragmentDetallePersonaje extends Fragment implements AdapterFilms.L
     }
 
     public void setearHome() {
-       nombreHome.setText("Planeta: " + personajeElegido.getHogar().getName());
-       climaHome.setText("Clima: " + personajeElegido.getHogar().getClimate());
-       gravedadHome.setText("Gravedad: " + personajeElegido.getHogar().getGravity());
-       terrenoHome.setText("Terreno: " + personajeElegido.getHogar().getTerrain());
-       poblacionHome.setText("Poblacion: " + personajeElegido.getHogar().getPopulation());
+        controllerFilms.traerHomeworld(personajeElegido.getHomeworld(), new ResultListener<Homeworld>() {
+            @Override
+            public void finish(Homeworld result) {
+                nombreHome.setText("Planeta: " + result.getName());
+                climaHome.setText("Clima: " + result.getClimate());
+                gravedadHome.setText("Gravedad: " + result.getGravity());
+                terrenoHome.setText("Terreno: " + result.getTerrain());
+                poblacionHome.setText("Poblacion: " + result.getPopulation());
+            }
+        });
     }
 
     public void setearEspecie() {
-        nombreEspecie.setText("Especie: " + personajeElegido.getEspecie().getName());
-        clasifEspecie.setText("Clasificacion: " + personajeElegido.getEspecie().getClassification());
-        altPromEspecie.setText("Altura Promedio: " + personajeElegido.getEspecie().getAverage_height());
-        promVidaEspecie.setText("Promedio de Vida: " + personajeElegido.getEspecie().getAverage_lifespan());
-        idiomaEspecie.setText("Idioma: " + personajeElegido.getEspecie().getLanguage());
+        controllerFilms.traerEspecie(personajeElegido.getSpecies().get(0), new ResultListener<Species>() {
+            @Override
+            public void finish(Species result) {
+                nombreEspecie.setText("Especie: " + result.getName());
+                clasifEspecie.setText("Clasificacion: " + result.getClassification());
+                altPromEspecie.setText("Altura Promedio: " + result.getAverage_height());
+                promVidaEspecie.setText("Promedio de Vida: " + result.getAverage_lifespan());
+                idiomaEspecie.setText("Idioma: " + result.getLanguage());
+            }
+        });
+
     }
 
     @Override
